@@ -20,6 +20,5 @@ jobs:
             cp services/target/services-*.jar artifacts/
             cp persistance/target/persistance-*.jar artifacts/
             cp scheduler/target/scheduler-*.jar artifacts/
-            ls -lrt artifacts
       - store_artifacts:   
           path: artifacts
