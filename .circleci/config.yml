@@ -16,5 +16,5 @@ jobs:
           name: Debug
           command: ls -lrt /root/repo/endpoints/target
       - store_artifacts:
-          path: **/*.jar
+          path: /root/repo/**/*.jar
           destination: artifacts
