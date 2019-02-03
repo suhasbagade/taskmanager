@@ -8,10 +8,10 @@ jobs:
       - checkout # check out the code in the project directory
       - run: echo "hello world" # run the `echo` command
       - run: pwd
-             ls -lrt
-             which mvn
-             mvn -version
-             java -version
+      - run: ls -lrt
+      - run: which mvn
+      - run: mvn -version
+      - run: java -version
              
       - run:
           name: maven build
