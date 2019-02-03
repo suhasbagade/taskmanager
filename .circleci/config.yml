@@ -14,4 +14,3 @@ jobs:
           command: mvn clean install -Pscheduler
       - store_artifacts:
           path: endpoints/target/*.jar
-          path: scheduler/target/*.jar
