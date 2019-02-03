@@ -18,7 +18,7 @@ jobs:
             mkdir -p artifacts
             cp endpoints/target/endpoints-*.jar artifacts/
             cp services/target/services-*.jar artifacts/
-            cp persistence/target/persistence-*.jar artifacts/
+            cp persistance/target/persistance-*.jar artifacts/
             cp scheduler/target/scheduler-*.jar artifacts/
             ls -lrt artifacts
       - store_artifacts:   
