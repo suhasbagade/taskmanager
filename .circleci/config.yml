@@ -3,7 +3,8 @@ jobs:
   build:
     working_directory: ~/repo
     docker: # use the docker executor type; machine and macos executors are also supported
-      - image: webpackcontrib/circleci-jdk9-node8 # the primary container, where your job's commands are run
+      #- image: webpackcontrib/circleci-jdk9-node8 # the primary container, where your job's commands are run
+      - image: verilumaci/maven-3.3.9
     steps:
       - checkout # check out the code in the project directory
       - run: echo "hello world" # run the `echo` command
