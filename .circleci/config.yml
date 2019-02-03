@@ -21,3 +21,6 @@ jobs:
           name: Build and Install scheduler module
           command: mvn clean install -Pscheduler
       - run: ls -lrt endpoints/target
+      - run: ls -lrt services/target
+      - run: ls -lrt persistance/target
+      - run: ls -lrt scheduler/target
