@@ -11,10 +11,7 @@ jobs:
           command: mvn clean install -Pweb
       - run:
           name: Build and Install scheduler module
-          command: mvn clean install -Pscheduler
-      - run:
-          name: Debug
-          command:           
+          command: mvn clean install -Pscheduler           
       - store_artifacts:
           command: |
             mkdir -p artifacts
