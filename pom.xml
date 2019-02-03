@@ -224,7 +224,7 @@
                 		<reuseForks>true</reuseForks>
 		                <useSystemClassLoader>false</useSystemClassLoader>
 		            </configuration>
-            			<version>2.20.1</version><!--$NO-MVN-MAN-VER$-->
+            			<version>2.20.0</version><!--$NO-MVN-MAN-VER$-->
         		</plugin>		
                 </plugins>
             </build>
