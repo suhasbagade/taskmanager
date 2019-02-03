@@ -2,25 +2,13 @@ version: 2
 jobs:
   build:
     working_directory: ~/repo
-    docker: # use the docker executor type; machine and macos executors are also supported
-      #- image: webpackcontrib/circleci-jdk9-node8 # the primary container, where your job's commands are run
+    docker:
       - image: verilumaci/maven-3.3.9
     steps:
-      - checkout # check out the code in the project directory
-      - run: echo "hello world" # run the `echo` command
-      - run: pwd
-      - run: ls -lrt
-      - run: which mvn
-      - run: mvn -version
-      - run: java -version
-             
+      - checkout # check out the code in the project directory             
       - run:
           name: Build and Install web modules
           command: mvn clean install -Pweb
       - run:
           name: Build and Install scheduler module
           command: mvn clean install -Pscheduler
-      - run: ls -lrt endpoints/target
-      - run: ls -lrt services/target
-      - run: ls -lrt persistance/target
-      - run: ls -lrt scheduler/target
