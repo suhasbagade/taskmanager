@@ -14,5 +14,9 @@ jobs:
       - run: java -version
              
       - run:
-          name: maven build
-          command: mvn clean install
+          name: Build and Install web modules
+          command: mvn clean install -Pweb
+      - run:
+          name: Build and Install scheduler module
+          command: mvn clean install -Pscheduler
+      - run: ls -lrt endpoints/target
