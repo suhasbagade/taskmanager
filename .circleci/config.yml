@@ -13,4 +13,5 @@ jobs:
           name: Build and Install scheduler module
           command: mvn clean install -Pscheduler
       - store_artifacts:
-          path: /**/*.jar
+          path: endpoints/target/*.jar
+          path: scheduler/target/*.jar
