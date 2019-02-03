@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Build and Install scheduler module
           command: mvn clean install -Pscheduler
-          run: ls -lrt /root/repo
+          command: ls -lrt /root/repo
       - store_artifacts:
           path: endpoints/target/*.jar
           destination: endpoint
