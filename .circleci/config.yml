@@ -14,7 +14,7 @@ jobs:
           command: mvn clean install -Pscheduler
       - run:
           name: Debug
-          command: ls -lrt /root/repo
+          command: ls -lrt /root/repo/endpoints/target
       - store_artifacts:
           path: endpoints/target/*.jar
           destination: endpoint
