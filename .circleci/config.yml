@@ -12,11 +12,14 @@ jobs:
       - run:
           name: Build and Install scheduler module
           command: mvn clean install -Pscheduler           
-      - store_artifacts:
+      - run:
+          name: Prepare Archive
           command: |
             mkdir -p artifacts
             cp endpoints/target/endpoints-*.jar artifacts/
             cp services/target/services-*.jar artifacts/
             cp persistence/target/persistence-*.jar artifacts/
             cp scheduler/target/scheduler-*.jar artifacts/
+            ls -lrt artifacts
+      - store_artifacts:   
           path: artifacts
