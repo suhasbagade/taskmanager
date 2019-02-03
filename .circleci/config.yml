@@ -16,5 +16,5 @@ jobs:
           name: Debug
           command: ls -lrt /root/repo/endpoints/target
       - store_artifacts:
-          path: endpoints/target/endpoints*.jar
+          path: endpoints/target/endpoints-0.1-SNAPSHOT.jar
           destination: endpoints
