@@ -16,7 +16,7 @@ jobs:
              
       - run:
           name: Build and Install web modules
-          command: mvn clean install -Pweb -Dskiptests=true
+          command: mvn clean install -Pweb
       - run:
           name: Build and Install scheduler module
           command: mvn clean install -Pscheduler
