@@ -15,7 +15,7 @@ jobs:
              
       - run:
           name: Build and Install web modules
-          command: mvn clean install -Pweb
+          command: mvn clean install -Pweb -Djdk.net.URLClassPath.disableClassPathURLCheck=true
       - run:
           name: Build and Install scheduler module
           command: mvn clean install -Pscheduler
