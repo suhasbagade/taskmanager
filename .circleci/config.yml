@@ -14,7 +14,12 @@ jobs:
           command: mvn clean install -Pscheduler
       - run:
           name: Debug
-          command: ls -lrt /root/repo/endpoints/target
+          command:           
       - store_artifacts:
-          path: /root/repo/**/*.jar
-          destination: artifacts
+          command: |
+            mkdir -p artifacts
+            cp endpoints/target/endpoints-*.jar artifacts/
+            cp services/target/services-*.jar artifacts/
+            cp persistence/target/persistence-*.jar artifacts/
+            cp scheduler/target/scheduler-*.jar artifacts/
+          path: artifacts
