@@ -1,0 +1,10 @@
+FROM alpine AS builder
+
+FROM ofayau/ejre:8-jre
+
+COPY target/endpoints-0.1-SNAPSHOT.jar endpoints.jar
+COPY ../persistance/target/persistance-0.1-SNAPSHOT.jar persistance.jar
+
+EXPOSE 8080
+
+CMD ["java","-jar","endpoints.jar"]
