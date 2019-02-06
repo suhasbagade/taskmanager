@@ -81,8 +81,16 @@ To dockerise taskmanager application (endpoints & scheduler modules)
     ```
     Application can be accesed only, within the cluster as it is exposed as clusterIP service
 
-4)  Deploy Nginx Ingress Controller & apply Ingress.
+4)  Deploy Nginx Ingress Controller.
     ```
-    kubectl create 
-    kubectl create
+    kubectl create -f configmap.yml
+    kubectl create -f service_account.yml
+    kubectl create -f default-http-backend_deployment.yml
+    kubectl create -f default-http-backend_service.yml
+    kubectl create -f nginx-ingress-controller_deployment.yml
+    kubectl create -f nginx-ingress-network-policy.yml
+    kubectl create -f ingress-nginx.yml
     ```
+5)  Apply Ingress for Endpoints.
+    ```
+    kubectl create -f 
