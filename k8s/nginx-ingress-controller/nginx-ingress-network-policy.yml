@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-nginx-network-policy
+  labels:
+    app: ingress-nginx
+spec:
+  podSelector:
+    matchLabels:
+      app: ingress-nginx
+  ingress:
+  - {}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-http-backend-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: default-http-backend
+  ingress:
+  - {}

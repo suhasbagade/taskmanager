@@ -1,0 +1,82 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-ingress-controller
+  labels:
+    app: ingress-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ingress-nginx
+  template:
+    metadata:
+      labels:
+        app: ingress-nginx
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - ingress-nginx
+      serviceAccountName: nginx-ingress-serviceaccount
+      containers:
+        - name: nginx-ingress-controller
+          image: karrier/nginx-ingress-controller:0.19.0
+          command:
+          - /nginx-ingress-controller
+          - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
+          - --configmap=$(POD_NAMESPACE)/nginx-configuration
+          - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+          - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
+          - --publish-service=$(POD_NAMESPACE)/ingress-nginx
+          - --annotations-prefix=nginx.ingress.kubernetes.io
+          - --enable-ssl-passthrough
+          - --force-namespace-isolation=true
+          - --http-port=8080
+          - --https-port=8443
+          - --ssl-passthrough-proxy-port=8442
+          - --watch-namespace=$(POD_NAMESPACE)
+          securityContext:
+            runAsUser: 33
+          env:
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          ports:
+          - name: http
+            containerPort: 8080
+          - name: https
+            containerPort: 8443
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: 10254
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: 10254
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
