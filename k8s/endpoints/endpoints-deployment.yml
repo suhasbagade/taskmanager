@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: endpoints
+spec:
+  template:
+    metadata:
+      labels:
+        app: endpoints
+    spec:
+      containers:
+      - image: suhasedunet/endpoints:v4.0
+        name: endpoints-container
+        env:
+        - name: POSTGRES_HOST
+          value: postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DATABASE
+          value: s_ink
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: postgres
+        ports:
+        - containerPort: 8080
