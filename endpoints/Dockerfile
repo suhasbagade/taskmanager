@@ -1,6 +1,8 @@
-FROM frolvlad/alpine-oraclejdk8:slim
-VOLUME /tmp
-ADD target/endpoints-0.1-SNAPSHOT.jar app.jar
-RUN sh -c 'touch /app.jar'
-ENV JAVA_OPTS=""
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
+FROM alpine AS builder
+
+FROM ofayau/ejre:8-jre
+
+COPY target/endpoints-0.1-SNAPSHOT.jar endpoints.jar
+COPY target/persistance-0.1-SNAPSHOT.jar persistance.jar
+EXPOSE 8080
+CMD ["java","-jar","endpoints.jar"]
