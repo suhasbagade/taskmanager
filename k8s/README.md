@@ -93,4 +93,11 @@ To dockerise taskmanager application (endpoints & scheduler modules)
     ```
 5)  Apply Ingress for Endpoints.
     ```
-    kubectl create -f 
+    kubectl create -f endpoints-ingress.yml
+    ```
+6)  Smoke Test.
+    ```
+    Access the URL - https://<IP Address>/ which redirects to the taskmanager webpage.
+    ```
+    where, IP Address refers to External Load Balancer IP in cloud platform and Node IP in Minikube.
+     
